@@ -175,13 +175,13 @@ const ProductDetailsInfo = () => {
                       <button className="full-view" onClick={openFullView}>
                         <i className="bi bi-arrows-fullscreen"></i>
                       </button>
-{/* 
+
                       <Slider
                         {...bigSettings}
                         ref={setBigNav}
                         className="slider-big"
                       >
-                        {images.map((img, index) => (
+                        {/* {images.map((img, index) => (
                           <div className="slick-slide" key={index}>
                             <figure
                               className="zoom"
@@ -195,7 +195,7 @@ const ProductDetailsInfo = () => {
                               />
                             </figure>
                           </div>
-                        ))}
+                        ))} */}
 
                         <div className="slick-slide">
                           <figure
@@ -210,34 +210,16 @@ const ProductDetailsInfo = () => {
                             />
                           </figure>
                         </div>
-                      </Slider> */}
-                      <Slider {...bigSettings} ref={setBigNav} className="slider-big">
-  {findProduct && (
-    <>
-      {[findProduct.img1, findProduct.img2].map((img, index) => (
-        <div className="slick-slide" key={index}>
-          <figure
-            className="zoom"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <img src={img} className="img-fluid zoom-img" alt={`img-${index}`} />
-          </figure>
-        </div>
-      ))}
-    </>
-  )}
-</Slider>
-
+                      </Slider>
                     </div>
 
                     <div className="pro-slider">
-                      {/* <Slider
+                      <Slider
                         {...thumbSettings}
                         ref={setThumbNav}
                         className="slider-small"
                       >
-                        {images.map((img, index) => (
+                        {/* {images.map((img, index) => (
                           <div className="slick-slide" key={index}>
                             <Link to="#!" className="product-single--thumbnail">
                               <img
@@ -247,7 +229,7 @@ const ProductDetailsInfo = () => {
                               />
                             </Link>
                           </div>
-                        ))}
+                        ))} */}
 
                         <div className="slick-slide">
                           <Link to="#!" className="product-single--thumbnail">
@@ -258,22 +240,7 @@ const ProductDetailsInfo = () => {
                             />
                           </Link>
                         </div>
-                      </Slider> */}
-
-                      <Slider {...thumbSettings} ref={setThumbNav} className="slider-small">
-  {findProduct && (
-    <>
-      {[findProduct.img1, findProduct.img2].map((img, index) => (
-        <div className="slick-slide" key={index}>
-          <Link to="#!" className="product-single--thumbnail">
-            <img src={img} className="img-fluid" alt={`thumb-${index}`} />
-          </Link>
-        </div>
-      ))}
-    </>
-  )}
-</Slider>
-
+                      </Slider>
                     </div>
                   </div>
 
@@ -291,7 +258,7 @@ const ProductDetailsInfo = () => {
                         >
                           &times;
                         </button>
-{/* 
+
                         <Slider
                           slidesToShow={1}
                           slidesToScroll={1}
@@ -302,7 +269,7 @@ const ProductDetailsInfo = () => {
                           prevArrow={<FullPrevArrow />}
                           nextArrow={<FullNextArrow />}
                         >
-                          {images.map((img, index) => (
+                          {/* {images.map((img, index) => (
                             <div key={index} className="slick-slide">
                               <img
                                 src={`/img/product/${img}`}
@@ -310,7 +277,7 @@ const ProductDetailsInfo = () => {
                                 alt={`pro-${index + 1}`}
                               />
                             </div>
-                          ))}
+                          ))} */}
 
                           <div className="slick-slide">
                             <img
@@ -319,29 +286,7 @@ const ProductDetailsInfo = () => {
                               alt="Imagee"
                             />
                           </div>
-                        </Slider> */}
-
-                        <Slider
-  slidesToShow={1}
-  slidesToScroll={1}
-  arrows={true}
-  fade={true}
-  initialSlide={currentIndex}
-  className="slider-big fullview-slider"
-  prevArrow={<FullPrevArrow />}
-  nextArrow={<FullNextArrow />}
->
-  {findProduct && (
-    <>
-      {[findProduct.img1, findProduct.img2].map((img, index) => (
-        <div className="slick-slide" key={index}>
-          <img src={img} className="img-fluid" alt={`full-${index}`} />
-        </div>
-      ))}
-    </>
-  )}
-</Slider>
-
+                        </Slider>
                       </div>
                     </div>
                   )}

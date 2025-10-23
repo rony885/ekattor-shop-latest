@@ -2,8 +2,8 @@ const products = [
   {
     id: 1,
     category: "Wireless earbuds", // must match categories.title
-    img1: "img/product/home1-pro-1.jpg",
-    img2: "img/product/home1-pro-2.jpg",
+    img1: "/img/product/home1-pro-1.jpg",
+    img2: "/img/product/home1-pro-2.jpg",
     subtitle: "Wireless device",
     title: "Wireless headphones",
     newPrice: "৳520",
@@ -17,8 +17,8 @@ const products = [
   {
     id: 2,
     category: "Portable speaker",
-    img1: "img/product/home1-pro-3.jpg",
-    img2: "img/product/home1-pro-4.jpg",
+    img1: "/img/product/home1-pro-3.jpg",
+    img2: "/img/product/home1-pro-4.jpg",
     subtitle: "Waterproof",
     title: "Wireless mouse",
     newPrice: "৳2,160",
@@ -32,8 +32,8 @@ const products = [
   {
     id: 3,
     category: "Air conditioner",
-    img1: "img/product/home1-pro-5.jpg",
-    img2: "img/product/home1-pro-6.jpg",
+    img1: "/img/product/home1-pro-5.jpg",
+    img2: "/img/product/home1-pro-6.jpg",
     subtitle: "Live program",
     title: "Pen drivess",
     newPrice: "৳1,200",
@@ -47,8 +47,8 @@ const products = [
   {
     id: 4,
     category: "Ev charging plug",
-    img1: "img/product/home1-pro-7.jpg",
-    img2: "img/product/home1-pro-8.jpg",
+    img1: "/img/product/home1-pro-7.jpg",
+    img2: "/img/product/home1-pro-8.jpg",
     subtitle: "Waterproof watch",
     title: "Smart watch",
     newPrice: "৳3,840",
@@ -62,8 +62,8 @@ const products = [
   {
     id: 5,
     category: "DVD player slot",
-    img1: "img/product/home1-pro-1.jpg",
-    img2: "img/product/home1-pro-2.jpg",
+    img1: "/img/product/home1-pro-1.jpg",
+    img2: "/img/product/home1-pro-2.jpg",
     subtitle: "Wireless device",
     title: "Wireless headphones",
     newPrice: "৳2,520",
@@ -77,8 +77,8 @@ const products = [
   {
     id: 6,
     category: "360 camera",
-    img1: "img/product/home1-pro-3.jpg",
-    img2: "img/product/home1-pro-4.jpg",
+    img1: "/img/product/home1-pro-3.jpg",
+    img2: "/img/product/home1-pro-4.jpg",
     subtitle: "Waterproof",
     title: "Wireless mouse",
     newPrice: "৳2,160",
@@ -92,8 +92,8 @@ const products = [
   {
     id: 7,
     category: "Wireless earbuds",
-    img1: "img/product/home1-pro-5.jpg",
-    img2: "img/product/home1-pro-6.jpg",
+    img1: "/img/product/home1-pro-5.jpg",
+    img2: "/img/product/home1-pro-6.jpg",
     subtitle: "Live program",
     title: "Pen drivess",
     newPrice: "৳1,200",
@@ -107,8 +107,8 @@ const products = [
   {
     id: 8,
     category: "Portable speaker",
-    img1: "img/product/home1-pro-7.jpg",
-    img2: "img/product/home1-pro-8.jpg",
+    img1: "/img/product/home1-pro-7.jpg",
+    img2: "/img/product/home1-pro-8.jpg",
     subtitle: "Waterproof watch",
     title: "Smart watch",
     newPrice: "৳3,840",
