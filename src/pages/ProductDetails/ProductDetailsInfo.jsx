@@ -175,13 +175,13 @@ const ProductDetailsInfo = () => {
                       <button className="full-view" onClick={openFullView}>
                         <i className="bi bi-arrows-fullscreen"></i>
                       </button>
-
+{/* 
                       <Slider
                         {...bigSettings}
                         ref={setBigNav}
                         className="slider-big"
                       >
-                        {/* {images.map((img, index) => (
+                        {images.map((img, index) => (
                           <div className="slick-slide" key={index}>
                             <figure
                               className="zoom"
@@ -195,7 +195,7 @@ const ProductDetailsInfo = () => {
                               />
                             </figure>
                           </div>
-                        ))} */}
+                        ))}
 
                         <div className="slick-slide">
                           <figure
@@ -210,16 +210,57 @@ const ProductDetailsInfo = () => {
                             />
                           </figure>
                         </div>
-                      </Slider>
+                      </Slider> */}
+                      <Slider {...bigSettings} ref={setBigNav} className="slider-big">
+  {/* Main product images */}
+  {findProduct?.images?.map((img, index) => (
+    <div className="slick-slide" key={`main-${index}`}>
+      <figure
+        className="zoom"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <img
+          src={img}
+          className="img-fluid zoom-img"
+          alt={`product-${index}`}
+        />
+      </figure>
+    </div>
+  ))}
+
+  {/* Related product images (same category) */}
+  {products
+    .filter(
+      (p) => p.category === findProduct?.category && p.id !== findProduct.id
+    )
+    .flatMap((related) =>
+      related.images?.map((img, index) => (
+        <div className="slick-slide" key={`related-${related.id}-${index}`}>
+          <figure
+            className="zoom"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img
+              src={img}
+              className="img-fluid zoom-img"
+              alt={related.title}
+            />
+          </figure>
+        </div>
+      ))
+    )}
+</Slider>
                     </div>
 
-                    <div className="pro-slider">
+                    {/* <div className="pro-slider">
                       <Slider
                         {...thumbSettings}
                         ref={setThumbNav}
                         className="slider-small"
                       >
-                        {/* {images.map((img, index) => (
+                        {images.map((img, index) => (
                           <div className="slick-slide" key={index}>
                             <Link to="#!" className="product-single--thumbnail">
                               <img
@@ -229,7 +270,7 @@ const ProductDetailsInfo = () => {
                               />
                             </Link>
                           </div>
-                        ))} */}
+                        ))}
 
                         <div className="slick-slide">
                           <Link to="#!" className="product-single--thumbnail">
@@ -241,7 +282,48 @@ const ProductDetailsInfo = () => {
                           </Link>
                         </div>
                       </Slider>
-                    </div>
+                    </div> */}
+<div className="pro-slider">
+  <Slider {...thumbSettings} ref={setThumbNav} className="slider-small">
+    {/* Main product thumbnails */}
+    {findProduct?.images?.map((img, index) => (
+      <div className="slick-slide" key={`thumb-main-${index}`}>
+        <Link to="#!" className="product-single--thumbnail">
+          <img
+            src={img}
+            className="img-fluid"
+            alt={`thumb-${index}`}
+          />
+        </Link>
+      </div>
+    ))}
+
+    {/* Related product thumbnails */}
+    {products
+      .filter(
+        (p) => p.category === findProduct?.category && p.id !== findProduct.id
+      )
+      .flatMap((related) =>
+        related.images?.map((img, index) => (
+          <div
+            className="slick-slide"
+            key={`thumb-related-${related.id}-${index}`}
+          >
+            <Link
+              to={`/product/${related.id}`}
+              className="product-single--thumbnail"
+            >
+              <img
+                src={img}
+                className="img-fluid"
+                alt={related.title}
+              />
+            </Link>
+          </div>
+        ))
+      )}
+  </Slider>
+</div>
                   </div>
 
                   {isFullView && (
