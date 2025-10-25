@@ -170,7 +170,7 @@ const products = [
     sale: "14%",
     brand: "AudioMax",
   },
-   {
+  {
     id: 3,
     category: "Air conditioner",
     img1: "/img/product/home1-pro-5.jpg",

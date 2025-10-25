@@ -31,21 +31,6 @@ const ProductDetailsInfo = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { prodId } = useParams();
 
-  // const images = [
-  //   "/home1-pro-1.jpg",
-  //   "/home1-pro-2.jpg",
-  //   "/home1-pro-3.jpg",
-  //   "/home1-pro-4.jpg",
-  //   "/home1-pro-5.jpg",
-  //   "/home1-pro-6.jpg",
-  //   "/home1-pro-7.jpg",
-  //   "/home1-pro-8.jpg",
-  //   "/home1-pro-9.jpg",
-  //   "/home1-pro-10.jpg",
-  //   "/home1-pro-11.jpg",
-  //   "/home1-pro-12.jpg",
-  // ];
-
   const findProduct =
     products && products.find((prod) => prod.id === parseInt(prodId));
 
@@ -175,155 +160,103 @@ const ProductDetailsInfo = () => {
                       <button className="full-view" onClick={openFullView}>
                         <i className="bi bi-arrows-fullscreen"></i>
                       </button>
-{/* 
+
                       <Slider
                         {...bigSettings}
                         ref={setBigNav}
                         className="slider-big"
                       >
-                        {images.map((img, index) => (
-                          <div className="slick-slide" key={index}>
-                            <figure
-                              className="zoom"
-                              onMouseMove={handleMouseMove}
-                              onMouseLeave={handleMouseLeave}
-                            >
-                              <img
-                                src={`/img/product/${img}`}
-                                className="img-fluid zoom-img"
-                                alt={`pro-${index + 1}`}
-                              />
-                            </figure>
-                          </div>
-                        ))}
+                        {(() => {
+                          // Find related products
+                          const related = products.filter(
+                            (p) =>
+                              p.category === findProduct?.category &&
+                              p.id !== findProduct?.id
+                          );
 
-                        <div className="slick-slide">
-                          <figure
-                            className="zoom"
-                            onMouseMove={handleMouseMove}
-                            onMouseLeave={handleMouseLeave}
-                          >
-                            <img
-                              src={findProduct && findProduct.img1}
-                              className="img-fluid zoom-img"
-                              alt="imagee"
-                            />
-                          </figure>
-                        </div>
-                      </Slider> */}
-                      <Slider {...bigSettings} ref={setBigNav} className="slider-big">
-  {/* Main product images */}
-  {findProduct?.images?.map((img, index) => (
-    <div className="slick-slide" key={`main-${index}`}>
-      <figure
-        className="zoom"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
-        <img
-          src={img}
-          className="img-fluid zoom-img"
-          alt={`product-${index}`}
-        />
-      </figure>
-    </div>
-  ))}
+                          // Collect all images to show
+                          const mainImages = findProduct?.images || [
+                            findProduct?.img1,
+                            findProduct?.img2,
+                          ];
+                          const relatedImages =
+                            related.length > 0
+                              ? related.flatMap(
+                                  (p) => p.images || [p.img1, p.img2]
+                                )
+                              : [];
 
-  {/* Related product images (same category) */}
-  {products
-    .filter(
-      (p) => p.category === findProduct?.category && p.id !== findProduct.id
-    )
-    .flatMap((related) =>
-      related.images?.map((img, index) => (
-        <div className="slick-slide" key={`related-${related.id}-${index}`}>
-          <figure
-            className="zoom"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <img
-              src={img}
-              className="img-fluid zoom-img"
-              alt={related.title}
-            />
-          </figure>
-        </div>
-      ))
-    )}
-</Slider>
+                          // Combine both (if related exist, include them)
+                          const allImages = [...mainImages, ...relatedImages];
+
+                          return allImages.map(
+                            (img, i) =>
+                              img && (
+                                <div key={i} className="slick-slide">
+                                  <figure
+                                    className="zoom"
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                  >
+                                    <img
+                                      src={img}
+                                      className="img-fluid zoom-img"
+                                      alt={`product-${i}`}
+                                    />
+                                  </figure>
+                                </div>
+                              )
+                          );
+                        })()}
+                      </Slider>
                     </div>
 
-                    {/* <div className="pro-slider">
+                    <div className="pro-slider">
                       <Slider
                         {...thumbSettings}
                         ref={setThumbNav}
                         className="slider-small"
                       >
-                        {images.map((img, index) => (
-                          <div className="slick-slide" key={index}>
-                            <Link to="#!" className="product-single--thumbnail">
-                              <img
-                                src={`/img/product/${img}`}
-                                className="img-fluid"
-                                alt={`pro-${index + 1}`}
-                              />
-                            </Link>
-                          </div>
-                        ))}
+                        {(() => {
+                          const related = products.filter(
+                            (p) =>
+                              p.category === findProduct?.category &&
+                              p.id !== findProduct?.id
+                          );
 
-                        <div className="slick-slide">
-                          <Link to="#!" className="product-single--thumbnail">
-                            <img
-                              src={findProduct && findProduct.img1}
-                              className="img-fluid"
-                              alt="imagee"
-                            />
-                          </Link>
-                        </div>
+                          const mainImages = findProduct?.images || [
+                            findProduct?.img1,
+                            findProduct?.img2,
+                          ];
+                          const relatedImages =
+                            related.length > 0
+                              ? related.flatMap(
+                                  (p) => p.images || [p.img1, p.img2]
+                                )
+                              : [];
+
+                          const allImages = [...mainImages, ...relatedImages];
+
+                          return allImages.map(
+                            (img, i) =>
+                              img && (
+                                <div key={i} className="slick-slide">
+                                  <Link
+                                    to="#!"
+                                    className="product-single--thumbnail"
+                                  >
+                                    <img
+                                      src={img}
+                                      className="img-fluid"
+                                      alt={`thumb-${i}`}
+                                    />
+                                  </Link>
+                                </div>
+                              )
+                          );
+                        })()}
                       </Slider>
-                    </div> */}
-<div className="pro-slider">
-  <Slider {...thumbSettings} ref={setThumbNav} className="slider-small">
-    {/* Main product thumbnails */}
-    {findProduct?.images?.map((img, index) => (
-      <div className="slick-slide" key={`thumb-main-${index}`}>
-        <Link to="#!" className="product-single--thumbnail">
-          <img
-            src={img}
-            className="img-fluid"
-            alt={`thumb-${index}`}
-          />
-        </Link>
-      </div>
-    ))}
-
-    {/* Related product thumbnails */}
-    {products
-      .filter(
-        (p) => p.category === findProduct?.category && p.id !== findProduct.id
-      )
-      .flatMap((related) =>
-        related.images?.map((img, index) => (
-          <div
-            className="slick-slide"
-            key={`thumb-related-${related.id}-${index}`}
-          >
-            <Link
-              to={`/product/${related.id}`}
-              className="product-single--thumbnail"
-            >
-              <img
-                src={img}
-                className="img-fluid"
-                alt={related.title}
-              />
-            </Link>
-          </div>
-        ))
-      )}
-  </Slider>
-</div>
+                    </div>
                   </div>
 
                   {isFullView && (
@@ -351,23 +284,39 @@ const ProductDetailsInfo = () => {
                           prevArrow={<FullPrevArrow />}
                           nextArrow={<FullNextArrow />}
                         >
-                          {/* {images.map((img, index) => (
-                            <div key={index} className="slick-slide">
-                              <img
-                                src={`/img/product/${img}`}
-                                className="img-fluid"
-                                alt={`pro-${index + 1}`}
-                              />
-                            </div>
-                          ))} */}
+                          {(() => {
+                            // Find related products
+                            const related = products.filter(
+                              (p) =>
+                                p.category === findProduct?.category &&
+                                p.id !== findProduct?.id
+                            );
 
-                          <div className="slick-slide">
-                            <img
-                              src={findProduct && findProduct.img1}
-                              className="img-fluid"
-                              alt="Imagee"
-                            />
-                          </div>
+                            // Collect all images
+                            const mainImages = findProduct?.images || [
+                              findProduct?.img1,
+                              findProduct?.img2,
+                            ];
+                            const relatedImages =
+                              related.length > 0
+                                ? related.flatMap(
+                                    (p) => p.images || [p.img1, p.img2]
+                                  )
+                                : [];
+
+                            const allImages = [...mainImages, ...relatedImages];
+
+                            // Render slides
+                            return allImages.map((img, i) => (
+                              <div key={i} className="slick-slide">
+                                <img
+                                  src={img}
+                                  className="img-fluid"
+                                  alt={`fullview-${i}`}
+                                />
+                              </div>
+                            ));
+                          })()}
                         </Slider>
                       </div>
                     </div>
